@@ -6,3 +6,7 @@ export const registerValidation = [
   body('fullName', 'Укажите имя (минимум 3 символа)').isLength({ min: 3 }),
   body('avatarUrl', 'Неверная ссылка на аватар').optional().isURL(),
 ]
+export const loginValidation = [
+  body('email', 'Неверный формат почты').isEmail(),
+  body('password', 'Укажите пароль (минимум 5 символов)').isLength({ min: 5 }),
+]
