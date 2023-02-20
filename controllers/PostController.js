@@ -13,6 +13,24 @@ export const getAll = async (req, res) => {
   }
 }
 
+export const getNewTags = async (req, res) => {
+  try {
+    const posts = await PostModel.find().limit(5).exec()
+
+    const tags = posts
+      .map((item) => item.tags)
+      .flat()
+      .slice(0, 5)
+
+    res.json(tags)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({
+      message: 'Произошла ошибка при получении тегов',
+    })
+  }
+}
+
 export const getOne = async (req, res) => {
   // Получение одного поста
   try {
