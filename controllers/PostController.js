@@ -12,7 +12,6 @@ export const getAll = async (req, res) => {
     })
   }
 }
-
 export const getNewTags = async (req, res) => {
   try {
     const posts = await PostModel.find().limit(5).exec()
@@ -30,7 +29,6 @@ export const getNewTags = async (req, res) => {
     })
   }
 }
-
 export const getOne = async (req, res) => {
   // Получение одного поста
   try {
@@ -61,7 +59,6 @@ export const getOne = async (req, res) => {
     })
   }
 }
-
 export const create = async (req, res) => {
   try {
     const doc = new PostModel({
@@ -81,7 +78,6 @@ export const create = async (req, res) => {
     })
   }
 }
-
 export const update = async (req, res) => {
   try {
     const postId = req.params.id // Берем id поста из урла
@@ -109,7 +105,6 @@ export const update = async (req, res) => {
     })
   }
 }
-
 export const remove = async (req, res) => {
   // Получение одного поста
   try {
@@ -131,6 +126,21 @@ export const remove = async (req, res) => {
     console.log(err)
     res.status(500).json({
       message: 'Произошла ошибка при удалении статьи',
+    })
+  }
+}
+
+export const getComments = async (req, res) => {
+  try {
+    const posts = await PostModel.find()
+
+    const comments = posts.map((item) => item.comments).flat()
+
+    res.json(comments)
+  } catch (err) {
+    console.log(err)
+    res.status(403).json({
+      message: 'Не удалось получить комменты',
     })
   }
 }
