@@ -39,7 +39,7 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   res.json({ url: `/uploads/${Date.now()}${req.file.originalname}` })
 })
 
-add.get('/posts/:id', PostController.getComments)
+//app.get('/posts/:id', PostController.getComments)
 
 app.get('/tags', PostController.getNewTags)
 app.get('/posts', PostController.getAll)
